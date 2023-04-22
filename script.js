@@ -4,39 +4,54 @@ const feedbackAnswer = document.querySelector('.feedback-answer')
 const rateBtn = document.querySelectorAll('.rate-btn')
 const submit = document.querySelector('.submit')
 const restartBtn = document.querySelector('.restart-btn')
-const votePlace = document.querySelector('.rate-score')
+const votePlaceFrom = document.querySelector('.rate-score-from')
+const votePlaceTo = document.querySelector('.rate-score-to')
 
-let rate = 0
+let rateFrom = 0
+let rateTo = 0
+let rateResult = 0
+let rateDuration = 0
 feedbackAnswer.style.display = 'none'
-restartBtn.style.display = 'none'
 
 rateBtn.forEach(btn => {
   btn.addEventListener('click', () =>  {
-    rate = btn.textContent
+    document.querySelector('.to-btn')?.classList.remove('to-btn')
 
-    document.querySelector('.active-high-btn')?.classList.remove('active-high-btn')
-    btn.classList.add('active-high-btn')
+    rateResult = rateResult === 0 ? rateFrom = btn.textContent : rateTo = btn.textContent
+
+    rateDuration = rateDuration === 0 ? btn.classList.add('from-btn') : btn.classList.add('to-btn')
   })
 })
 
 submit.addEventListener('click', () => {
-  if(rate !== 0) {
+  if(rateFrom !== 0 && rateTo !== 0) {
     feedbackAnswer.style.display = 'block'
     feedbackDisplay.style.display = 'none'
-    restartBtn.style.display = 'block'
 
-    votePlace.textContent = rate
+    if(rateTo > rateFrom) {
+      votePlaceFrom.textContent = rateFrom
+      votePlaceTo.textContent = rateTo
+    }else {
+      votePlaceFrom.textContent = rateTo
+      votePlaceTo.textContent = rateFrom
+    }
   }
 })
 
 restartBtn.addEventListener('click', () => {
-  rate = 0
+  rateDuration = 0
+  rateResult = 0
+  rateFrom = 0
+  rateTo = 0
 
   feedbackDisplay.style.display = 'block'
   feedbackAnswer.style.display = 'none'
-  restartBtn.style.display = 'none'
+
+  votePlaceFrom.textContent = 0
+  votePlaceTo.textContent = 0
 
   rateBtn.forEach(btn => {
-    btn.classList.remove('active-high-btn')
+    btn.classList.remove('from-btn')
+    btn.classList.remove('to-btn')
   })
 })

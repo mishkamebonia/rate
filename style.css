@@ -33,11 +33,11 @@ button {
   border-radius: 100%;
 }
 
-.active-high-btn {
-  background: rgba(252, 118, 20, 1);
+.to-btn {
+  background: rgba(252, 118, 20, 1) !important;
   color: rgb(255, 255, 255);
 }
-.active-low-btn {
+.from-btn {
   background: rgba(124, 135, 152, 1);
   color: rgb(255, 255, 255);
 }
@@ -229,5 +229,13 @@ button {
   .answer-description {
     font-size: 15px;
     line-height: 24px;
+  }
+
+  /* ? restart btn */
+  
+  .restart-btn {
+    width: 51px;
+    height: 51px;
+    font-size: 16px;
   }
 }
